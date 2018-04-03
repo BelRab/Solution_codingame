@@ -22,15 +22,27 @@ import java.util.Scanner;
 		            int t = in.nextInt(); // a temperature expressed as an integer ranging from -273 to 5526
 		            result[i]=t;//on va les mettres dans un tableau dabord
 		        }
-		        plusProche=Math.abs(result[0]);
+		        plusProche=result[0];
 		        for(int i=1;i<n;i++) {
-		        	if(result[i]<0) {
-		        		if(Math.abs(result[i])<plusProche) {
-		        			plusProche=Math.abs(result[i]);
-		        		}
+		        	if(plusProche>0) {
+		        		if(result[i]<0) {
+			        		if(Math.abs(result[i])<plusProche) {
+			        			plusProche=Math.abs(result[i]);// je crois je doit ajouter Math.abs
+			        		}
+			        	}else {
+			        		if(result[i]<plusProche) {
+			        			plusProche=result[i];
+			        		}
+			        	}	
 		        	}else {
-		        		if(result[i]<plusProche) {
-		        			plusProche=result[i];
+		        		if(result[i]<0) {
+		        			if(result[i]>plusProche) {
+		        				plusProche=result[i];
+		        			}
+		        		}else {//result[i]>=0
+		        			if(Math.abs(plusProche)>=result[i]) {
+		        				plusProche=result[i];
+		        			}
 		        		}
 		        	}
 		        }	
